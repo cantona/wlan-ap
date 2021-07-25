@@ -1,0 +1,18 @@
+Binary files apk-2021-07-23-3d203e8f.orig/src/apk and apk-2021-07-23-3d203e8f/src/apk differ
+diff -urN apk-2021-07-23-3d203e8f.orig/src/.apk.cmd apk-2021-07-23-3d203e8f/src/.apk.cmd
+--- apk-2021-07-23-3d203e8f.orig/src/.apk.cmd	1970-01-01 01:00:00.000000000 +0100
++++ apk-2021-07-23-3d203e8f/src/.apk.cmd	2021-07-25 12:56:23.413101658 +0200
+@@ -0,0 +1 @@
++cmd_src/apk := gcc -L/tip/dangole/staging_dir/host/lib -L/tip/dangole/staging_dir/hostpkg/lib -L/tip/dangole/staging_dir/target-arm_cortex-a7+neon-vfpv4_musl_eabi/host/lib -lpthread -Wl,-rpath=/tip/dangole/staging_dir/hostpkg/lib -lpthread  -Lsrc -pthread -o src/apk src/apk.o src/app_adbdump.o src/app_adbsign.o src/app_add.o src/app_audit.o src/app_cache.o src/app_convdb.o src/app_convndx.o src/app_del.o src/app_dot.o src/app_extract.o src/app_fetch.o src/app_fix.o src/app_index.o src/app_info.o src/app_list.o src/app_manifest.o src/app_mkndx.o src/app_mkpkg.o src/app_policy.o src/app_update.o src/app_upgrade.o src/app_search.o src/app_stats.o src/app_verify.o src/app_version.o src/app_vertest.o src/applet.o  -Wl,--as-needed -L/tip/dangole/staging_dir/hostpkg/lib -lssl -lcrypto  -L/tip/dangole/staging_dir/hostpkg/lib -lz  -Wl,--no-as-needed -lapk
+diff -urN apk-2021-07-23-3d203e8f.orig/src/Makefile apk-2021-07-23-3d203e8f/src/Makefile
+--- apk-2021-07-23-3d203e8f.orig/src/Makefile	2021-07-25 12:55:05.576564663 +0200
++++ apk-2021-07-23-3d203e8f/src/Makefile	2021-07-25 12:55:48.660862181 +0200
+@@ -87,7 +87,7 @@
+ apk.static-libs		:= $(apk-static-libs)
+ LDFLAGS_apk.static	:= -static
+ LIBS_apk.static		:= -Wl,--as-needed -ldl -Wl,--no-as-needed
+-LDFLAGS_apk		+= -L$(obj)
++LDFLAGS_apk		+= -L$(obj) -pthread
+ LDFLAGS_apk-test	+= -L$(obj)
+ 
+ CFLAGS_ALL		+= $(OPENSSL_CFLAGS) $(ZLIB_CFLAGS)
