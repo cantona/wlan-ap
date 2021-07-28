@@ -3,7 +3,8 @@ name: Build OpenWrt/uCentral images
 on:
   push:
     branches: [ uCentral-* ]
-
+    tags:
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
